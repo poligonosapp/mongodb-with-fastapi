@@ -7,6 +7,31 @@ from bson import ObjectId
 from typing import Optional, List
 import motor.motor_asyncio
 
+# import pymongo
+from pymongo import MongoClient
+client = MongoClient()
+
+# import MongoClient 
+from pymongo.mongo_client.MongoClient
+import MongoClient
+
+client = MongoClient('mongodb://leaflet-tokens-folium-hxpwt.mongodbrealm.com')
+
+# ObjectId(b'leaflet-tokens-folium-hxpwt')
+# ObjectId(b'MONGODB_URL')
+
+def server_selector(server_descriptions):
+     servers = [
+         server for server in server_descriptions
+         if server.address[0] == 'leaflet-tokens-folium-hxpwt'
+     ]
+     if not servers:
+        return server_descriptions
+     return servers
+# Finally, we can create a MongoClient instance with this server selector.
+
+client = MongoClient(server_selector=server_selector)
+
 app = FastAPI()
 client = motor.motor_asyncio.AsyncIOMotorClient(os.environ["MONGODB_URL"])
 db = client.college
